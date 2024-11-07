@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <title>Gerador de CPF</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 style="text-shadow: 2px 18px 8px rgba(246, 227, 14, 0.8); font-weight: bold;">
+            <span style="color: rgb(246, 227, 14);">X</span>-G
+            <span style="color: rgb(246, 227, 14);">A</span>T
+            <span style="color: rgb(246, 227, 14);">E</span>S
+            <i class="bi bi-alipay"></i>
+        </h1>
+        
+        <h2>Gerador de CPF</h2>
+        <button onclick="gerarCPF()">Gerar CPF <i class="bi bi-arrow-repeat"></i></button>
+        
+        <!-- Caixa para mostrar o CPF gerado -->
+        <div class="result">
+            <input type="text" id="resultado" readonly />
+        </div>
+    </div>
+
+    <script>
+        function gerarCPF() {
+            // Função para gerar um CPF válido
+            const gerarNumeroAleatorio = (limite) => Math.floor(Math.random() * limite);
+            const calcularDigito = (cpfParcial, pesos) => {
+                let soma = 0;
+                for (let i = 0; i < cpfParcial.length; i++) {
+                    soma += parseInt(cpfParcial[i]) * pesos[i];
+                }
+                let digito = (soma * 10) % 11;
+                return digito === 10 ? 0 : digito;
+            };
+
+            // Gerar os primeiros 9 dígitos
+            let cpf = '';
+            for (let i = 0; i < 9; i++) {
+                cpf += gerarNumeroAleatorio(10); // Números aleatórios de 0 a 9
+            }
+
+            // Calcular o 10º e 11º dígitos
+            const pesos1 = [10, 9, 8, 7, 6, 5, 4, 3, 2];
+            const digito1 = calcularDigito(cpf, pesos1);
+            cpf += digito1;
+
+            const pesos2 = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+            const digito2 = calcularDigito(cpf, pesos2);
+            cpf += digito2;
+
+            // Formatar o CPF com pontos e hífen
+            const cpfFormatado = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}`;
+
+            // Exibir o CPF gerado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.value = cpfFormatado; // Atribuir o CPF gerado ao campo de entrada
+            resultadoDiv.style.color = 'red'; // Ou a cor que você preferir
+        }
+    </script>
+
+</body>
+
+</html>
