@@ -12,7 +12,7 @@ body {
     height: 100vh;
     font-family: Arial, sans-serif;
     margin: 0;
-    background-image: url(../img/yin-yang.png);
+    background-image: url('yin-yang.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
