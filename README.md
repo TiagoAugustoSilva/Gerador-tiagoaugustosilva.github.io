@@ -21,4 +21,6 @@ Este é um simples gerador de CPF válido, desenvolvido utilizando **HTML**, **C
   - **Python**: Utilizado para validação do CPF gerado.
   - Flask: Framework para rodar o backend Python.
  
+    
+    ![ALT Text](Gerador-mobile.jpg)
     ![ALT Text](gerador-cpf.img.png)
